@@ -4,6 +4,7 @@ GetCycle
 GetCycle Cycle and Batch Report Capture
 
 GET CYCLE DESCRIPTION
+
 The GET CYCLE device server receives serial print data, stores and forwards the data to an
 Ethernet capable printer. Using the least invasive approach by connecting only to the print port,
 GET CYCLE is designed to store the batch reports with little or no changes to the program. After
@@ -21,6 +22,8 @@ web browser and by mapping the network location using Windows.
 Optional: If DataStore Plus* (available on Allen Bradley PanelView Plus panels) is activated, the
 historian data can be stored as CSV files to the GET CYCLE server. The data can be viewed as a
 customized graph from a JavaScript compatible web browser.
+
+
 
 
 THEORY OF OPERATION
