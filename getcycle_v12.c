@@ -1,4 +1,3 @@
-
 /**********************************************************************************************
 
 GET CYCLE Cycle Detection Application getcycle.c Rev 12 by Dan Lindamood III
@@ -156,7 +155,7 @@ char prntcmnd[128];
 	sprintf (cp_pcl,"cp /var/www/active_log.txt /var/www/pcl/cycle_%s.pcl", cyclenum);
 	system(cp_pcl);
 
-        sprintf(prntcmnd,"/usr/local/bin/pcl6 -J'@PJL SET FORMLINES=%s' -dNOPAUSE -sDEVICE=pdfwrite -sOwnerPassword=GhhGffGG7 -dEncryptionR=3 -dPermissions=-3884 -sOutputFile=/var/www/pdf/cycle_%s.pdf /var/www/pcl/cycle_%s.pcl", lines, cyclenum, cyclenum); 
+        sprintf(prntcmnd,"/usr/local/bin/pcl6 -J'@PJL SET FORMLINES=%s' -dNOPAUSE -sDEVICE=pdfwrite -sOwnerPassword=anypassword -dEncryptionR=3 -dPermissions=-3884 -sOutputFile=/var/www/pdf/cycle_%s.pdf /var/www/pcl/cycle_%s.pcl", lines, cyclenum, cyclenum); 
 //	printf("%s\n",prntcmnd);//for testing
         system(prntcmnd); // print to pdf
 
