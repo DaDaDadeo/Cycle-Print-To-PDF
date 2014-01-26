@@ -1,4 +1,4 @@
-BELOW IS ONE EXMAPLE OF A SETUP:
+BELOW IS ONE EXAMPLE OF A SETUP:
 
 This setup uses RxD and TxD but does not have RTS/CTS serial communication.
 
