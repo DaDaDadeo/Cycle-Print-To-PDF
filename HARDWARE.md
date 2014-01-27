@@ -21,7 +21,7 @@ RGraph JavaScript Libraries
 
 RS232 / TTL Adapter (MAX3232EID Chip)
 
-Real Time Clock - v2.1 [DS1307 Chip] (OPTIONAL)
+Real Time Clock - v2.1 DS1307 Chip (OPTIONAL: Add on if not on a server with NTP)
 
 
 
@@ -60,11 +60,13 @@ RTC Pi
 
 
 Serial Splitter
-(OPTIONAL)
+(OPTIONAL: If original serial printers remain on equipment.)
 Black Box Network Services
 http://www.blackbox.com/Store/Detail.aspx/DB9-2-to-1-Modem-Splitter/TL115A
 TL115A
 
 
 Acrylic Case Custom Build design using .093 Acrylic
+
+
 8GB SD CARD
