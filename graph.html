@@ -1,0 +1,270 @@
+<!DOCTYPE html >
+<html>
+<head>
+
+<title>GET CYCLE GRAPH</title>
+
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    <script src="/libraries/RGraph.common.core.js" ></script>
+    <script src="/libraries/RGraph.common.dynamic.js" ></script>
+    <script src="/libraries/RGraph.common.context.js" ></script>
+    <script src="/libraries/RGraph.common.tooltips.js" ></script>
+    <script src="/libraries/RGraph.common.effects.js" ></script>
+    <script src="/libraries/RGraph.common.key.js" ></script>
+    <script src="/libraries/RGraph.line.js" ></script>
+    <script src="/libraries/jquery.min.js" ></script>
+    <!--[if IE]><script src="../excanvas/excanvas.js"></script><![endif]-->
+    
+    
+</head>
+
+
+<body>
+
+ 
+    <!-- 2/3. This is the canvas that the graph is drawn on -->
+    <canvas id="cvs1" width="1000" height="40">[No canvas support]</canvas>
+    <canvas id="cvs2" width="1000" height="400">[No canvas support]</canvas>
+    <canvas id="cvs3" width="1000" height="200">[No canvas support]</canvas>
+ 
+    <!--
+        3/3. This creates and displays the graph. As it is here, you can call this from the window.onload event,
+             allowing you to put it in your pages header.
+	     -->
+
+
+    <script>
+        window.onload = function (e)
+        {
+            /**
+            * This is the callback for the AJAX request
+	    */
+	   cycle_number = prompt("Enter Cycle Number", '');
+
+           var callback = function ()
+            {
+                // Make the AJAX call
+
+		var data1 = [];
+		var data2 = [];
+		var data3 = [];
+		var data4 = [];
+		var data5 = [];
+		var data6 = [];
+		var data7 = [];
+		var data8 = [];
+		var data9 = [];
+		var timeline = [];
+		var cycle_int = [];
+		var date_time = [];
+		var cycle_name = [];
+		var alarm = [];
+		var alarm_active = 0;
+		var phase = [];
+		var phase_x = 1;
+
+		var rows = this.responseText.split(/\r?\n/);
+		      
+                // Handle the response
+		for (var i=1; i<(rows.length-1); ++i) {
+		    var cells = rows[i].split(/,/);
+			
+		   if (i % 20 == 1 ) {
+			    if (Number(cells[11])<10) timeline.push(cells[10].replace('\.00','')+':0'+cells[11].replace('\.00',''));
+				else timeline.push(cells[10].replace('\.00','')+':'+cells[11].replace('\.00','')); 
+		   }
+		   if (i == 1 ) {
+			   date_time.push(cells[0]+'  '+cells[1]);
+			   cycle_name.push(cells[2]);
+			   cycle_int.push(cells[16].replace('\.00',''));
+		   }
+
+
+		   if (Number(cells[37]) == 0) alarm.push(null);
+		   else {
+			   alarm.push(150);
+			   alarm_active = 1;
+		   }
+
+		   if ((Number(cells[17]) == 3) && (phase_x != 3)) {
+			   phase.push('PRE PULSE');
+			   phase_x = 3;	   
+		   }
+		   if ((Number(cells[17]) == 4) && (phase_x != 4)) {
+			   phase.push('PRE VACUUM');
+			   phase_x = 4;	   
+		   }
+		   if ((Number(cells[17]) == 11) && (phase_x != 11)) {
+			   phase.push('HEATUP');
+			   phase_x = 11;	   
+		   }
+		   if ((Number(cells[17]) == 13) && (phase_x != 13)) {
+			   phase.push('STERILIZING');
+			   phase_x = 13;	   
+		   }
+		   if ((Number(cells[17]) == 16) && (phase_x != 16)) {
+			   phase.push('POST VACUUM');
+			   phase_x = 16;	   
+		   }
+		   if ((Number(cells[17]) == 17) && (phase_x != 17)) {
+			   phase.push('POST PULSING');
+			   phase_x = 17;	   
+		   }
+		   if ((Number(cells[17]) == 18) && (phase_x != 18)) {
+			   phase.push('COOL PULSE');
+			   phase_x = 18;	   
+		   }
+		   if ((Number(cells[17]) == 20) && (phase_x != 20)) {
+			   phase.push('LEAK RATE VACUUM');
+			   phase_x = 20;	   
+		   }
+		   if ((Number(cells[17]) == 21) && (phase_x != 21)) {
+			   phase.push('STABILIZING');
+			   phase_x = 21;	   
+		   }
+		   if ((Number(cells[17]) == 22) && (phase_x != 22)) {
+			   phase.push('LEAK TEST');
+			   phase_x = 22;	   
+		   }
+		   if ((Number(cells[17]) == 23) && (phase_x != 23)) {
+			   phase.push('EQUALIZING');
+			   phase_x = 23;	   
+		   }
+		   else {
+		   phase.push('');
+	   	   }
+
+		    data1.push(Number(cells[19]));
+		    data2.push(Number(cells[20]));
+		    data3.push(Number(cells[21]));
+//		    data4.push(Number(cells[5]));
+		    data5.push(Number(cells[26]));
+		    data6.push(cells[19]);
+		    data7.push(cells[20]);
+		    data8.push(cells[21]);
+		    data9.push(cells[26]);
+		    
+		    
+
+		    
+	    }
+
+//	    p(date_time); //For Testing
+//	    p(cycle_int); //For Testing	   
+//         p(timeline); //For Testing
+                
+
+		    chart_title = 'Cycle '+cycle_int+'   '+cycle_name+'   '+date_time;
+		    if (alarm_active == 1) {
+			    chart_key =  ['Chamber Temp TE00  ', 'Heat Exch TE01  ', 'Chamber Drain TE02  ', 'Chamber Pressure PE06', 'Alarm Phase'];
+		    }
+		    else  chart_key = ['Chamber Temp TE00  ', 'Heat Exch TE01  ', 'Chamber Drain TE02  ', 'Chamber Pressure PE06'];
+
+		    if ( (i/20)<25){
+		    label_angle = 0;
+		    font_size = 9;
+		    }
+		    else {
+		    label_angle = 90;
+		    font_size = 6;
+		    }
+
+		    var line1 = new RGraph.Line('cvs1', [0]);
+		    line1.Set('chart.title', chart_title);
+		    line1.Set('chart.title.size', 16);
+		    line1.Set('title.vpos',.9);
+		    line1.Set('chart.numxticks', 0);
+		    line1.Set('chart.numyticks',0);
+		    line1.Set('chart.background.grid.color', 'white');
+		    line1.Set('chart.background.grid', false);
+		    line1.Set('chart.axis.linewidth', 0);
+		    line1.Set('chart.ylabels', false);
+		    line1.Set('chart.ymax', 1);
+		    line1.Draw();
+
+		    var line2 = new RGraph.Line('cvs2', data1, data2, data3, data5);
+		    line2.Set('chart.linewidth', 1);
+		    line2.Set('chart.background.grid.vlines',false);
+		    line2.Set('colors', ['red', 'green', 'purple', 'blue', 'pink']);
+		    line2.Set('chart.background.grid.autofit.numhlines', 10);
+		    line2.Set('chart.key', chart_key);
+		    line2.Set('chart.text.size', 9);
+		    line2.Set('chart.strokestyle', 'white');
+		    line2.Set('chart.key.position.x', 800);
+		    line2.Set('chart.key.position.y', 0);
+		    line2.Set('chart.key.interactive', true);
+		    line2.Set('tooltips', data6, data7, data6, data9);
+		    line2.Set('chart.numxticks', 0);
+		    line2.Draw();
+		    
+		   var line3 = new RGraph.Line('cvs2', [1]);
+		   line3.Set('chart.background.grid', false);
+		   line3.Set('chart.axis.linewidth', 0);
+		   line3.Set('chart.labels', timeline );
+		   line3.Set('chart.text.angle', label_angle );
+		   line3.Set('chart.text.size', font_size);
+		   line3.Set('chart.ylabels', false);
+		   line3.Set('chart.colors', ['white']);
+		   line3.Set('chart.numxticks', 0);
+		   line3.Set('chart.numyticks',0);
+		   line3.Set('chart.background.grid.color', 'white');
+		   line3.Draw();
+
+
+		   var line4 = new RGraph.Line('cvs2', alarm);
+		   line4.Set('chart.tooltips', ['TT','TT','TT','TT','TT','TT','TT','TT','TT','TT']);
+		   line4.Set('chart.filled', true);
+		   line4.Set('chart.stepped', true);
+		   line4.Set('chart.fillstyle', ['Gradient(pink:rgba(255,255,255,0))']);
+		   line4.Set('chart.background.grid', false);
+		   line4.Set('chart.ylabels', false);
+ 		   line4.Set('chart.colors', ['black']);
+		   line4.Set('chart.linewidth', .5);
+		   line4.Set('chart.ymax', line2.max);
+		   line4.Set('chart.shadow', true);
+		   line4.Set('chart.numxticks', 0);
+		   line4.Set('chart.animation.unfold.initial', 0);
+		   line4.Draw();
+//		   Graph.Effects.Line.Unfold(line4);
+
+
+		   var line5 = new RGraph.Line('cvs3', [0]);
+		   line5.Set('chart.background.grid', false);
+		   line5.Set('chart.axis.linewidth', 0);
+		   line5.Set('chart.labels', phase );
+		   line5.Set('chart.text.angle', 90 );
+		   line5.Set('chart.text.size', 7);
+		   line5.Set('chart.ylabels', false);
+		   line5.Set('chart.xaxispos', 'top');
+		   line5.Set('chart.colors', ['white']);
+		   line5.Set('chart.numxticks', 0);
+		   line5.Set('chart.numyticks',0);
+		   line5.Set('chart.background.grid.color', 'white');
+		   line5.Draw();
+
+
+//		   p(phase);
+//		   p(phase_t);
+
+  
+	
+	}
+ 
+//	p(cycle_number); //for testing
+
+	/**
+            * Make the AJAX call that fetches the CSV data
+            */
+
+	    RGraph.AJAX('/csv/'+cycle_number+'_GRAPH.CSV', callback);
+        }
+</script>
+
+
+<p>Libraries Provided by <a href="http://www.rgraph.net">RGraph</a>.</p>
+
+</body>
+</html>
+
+
+
