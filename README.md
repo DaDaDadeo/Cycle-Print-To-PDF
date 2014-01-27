@@ -1,7 +1,7 @@
 GetCycle
 ========
 
-GetCycle Cycle and Batch Report Capture
+Serial Print Cycle and Batch Report Capture
 
 GET CYCLE DESCRIPTION
 
