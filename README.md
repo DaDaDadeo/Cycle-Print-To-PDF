@@ -7,18 +7,18 @@ GET CYCLE DESCRIPTION
 
 The GET CYCLE device server receives serial print data, stores and forwards the data to an
 Ethernet capable printer. Using the least invasive approach by connecting only to the print port,
-GET CYCLE is designed to store the batch reports with little or no changes to the program. After
-a proper configuration, GET CYCLE is “plug and play” and will run automatically on power up
+GET CYCLE is designed to store the batch reports with little or no changes to the equipment providing the print data. After a proper configuration, GET CYCLE is “plug and play” and will run automatically on power up
 independent of the equipment controls.
 
-The stored batch reports are archived in both Acrobat PDF and PCL text formats. At the end of a
-cycle, the text data from the serial port is “printed” (converted) to PDFand also stored as a PCL
+The stored batch reports are archived in both srecured Acrobat PDF and raw PCL text formats. At the end of a
+cycle, the text data from the serial port is “printed” (converted) to PDF and also stored as a PCL
 text file. The PDF files will include the original color format and fonts. Printer tests, calbration
 reports, and other print functions not related to a cycle batch report are ignored.The batch reports
 are stored on the internal SD card. The available memory capacity is over 4GB.
 
 The GET CYCLE device is a web and network server. The stored files can be accessed using a
 web browser and by mapping the network location using Windows.
+
 Optional: If DataStore Plus* (available on Allen Bradley PanelView Plus panels) is activated, the
 historian data can be stored as CSV files to the GET CYCLE server. The data can be viewed as a
 customized graph from a JavaScript compatible web browser.
@@ -29,19 +29,16 @@ customized graph from a JavaScript compatible web browser.
 THEORY OF OPERATION
 
 The GET CYCLE device boots up using the Raspbian “wheezy” 2012-10-28 operating system.
-The operating system image is loaded on a 8GB SD card. During the bootup process, a shell
-script application startprocess.sh starts the two programs essential to the operation of the
-device.
+The 4GB operating system image is loaded on a 8GB SD card and the remaining partition is exanded to use the remaining 4GB for storage. 
+
+During the bootup process, a shell script application startprocess.sh starts the two programs essential to the operation of the device.
 
 The application startprocess.sh loads the two primary GET CYCLE applications, getcycle and
 serial_to_tcp.py. The shell script provides the opening commands for the two applications with
 the required arguments (configurations). The startprocess.sh application is part of the three
 programs that can be edited by the programmer.
 
-One of the GET CYCLE functions is to receive serial data from a printer port of a Getinge
-controller, store the data to a file named active_log.txt and at the same time forward the data to
-an Ethernel printer port. The data is not filtered or changed. The application that performs this is
-the serial_to_tcp.py program.
+One of the GET CYCLE functions is to receive serial data from a printer port of a controller, store the data to a file named active_log.txt and at the same time forward the data to an Ethernel printer port. The data is not filtered or changed. The application that performs this is the serial_to_tcp.py program.
 
 The getcycle application is a compiled binary program using C programming language. The
 function is to periodically check the text file active_log.txt and determine whether a cycle has
