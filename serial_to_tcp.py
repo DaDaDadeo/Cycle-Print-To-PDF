@@ -128,7 +128,7 @@ class SerialRedirector:
                 if n:
                     data = data + self.serial.read(n)   #and get as much as possible
                 if data:
-                    data = '\r\n'.join(data.split('\n'))
+                    # data = '\r\n'.join(data.split('\n'))# REMOVE REMARK IF PRINT "STAIR STEPS" (NEWLINE DOES NOT INCLUDE CR)
                     logfile = open("/var/www/active_log.txt","a")
                     logfile.write(data)
                     logfile.close()
