@@ -7,7 +7,7 @@ Raspberry Pi is a trademark of the Raspberry Pi Foundation
 
 8GB SD CARD IMAGE INCLUDES:
 Raspbian “wheezy” 2012-10-28 (LINUX Based Operating System)
-GhostScript 9.06 [PCL2PDF PCL6] (Print Application)
+GhostPDL 9.06 (pdfwrite PCL6) (Print Application)
 Apache 2 Web Server
 Samba Network Server
 Pyserial
@@ -19,7 +19,7 @@ RGraph JavaScript Libraries
 
 5V 1A MiniUSB Power Supply
 
-RS232 / TTL Adapter [MAX3232 Chip]
+RS232 / TTL Adapter (MAX3232EID Chip)
 
 Real Time Clock - v2.1 [DS1307 Chip] (OPTIONAL)
 
