@@ -14,7 +14,7 @@
 
 
 
-# serial_to_tcp.py version from GITHUB.com. Modified to write socket data to active_log.txt and check communication
+# Pyserial version of serial_tcp_redirect.py from GITHUB.com. Modified to write socket data to active_log.txt and check communication
 # to the printer. If printer disconnected, serial data is not written to TCP socket but the log file is still active.
 # Printer IP address and port number can be modified here: 
 
@@ -25,7 +25,7 @@ logdate="$(date +'%Y%m%d%H%M')"
 nohup /var/www/applications/serial_to_tcp.py -H 192.168.0.127 -P 9100 &> /var/www/status/${logdate}_Process_tcp.txt &
 
 
-# GETCYCLE 
+# Batch-Capture 
 #
 # Different models can be selected by removing the remark from the line associated
 # with the model.
@@ -47,10 +47,9 @@ nohup /var/www/applications/serial_to_tcp.py -H 192.168.0.127 -P 9100 &> /var/ww
 #				       locate      pt  Confirm Cycle    End of Cycle   per page
 #
 #CL AB Controller SWE 80 Col.
-nohup /var/www/applications/getcycle 10 "[ Cycle" 62 "TIME         " "End of Cycle" 62 &>/var/www/status/${logdate}_Process_log.txt &
+nohup /var/www/applications/Batch-Capture 10 "[ Cycle" 62 "TIME         " "End of Cycle" 62 &>/var/www/status/${logdate}_Process_log.txt &
 #
 # EX: ======================================================[ Cycle 1199 Page 1 ]=
 #     TIME           PE3       TE2   TE1   TE0       LP1  LP2   LP3   LP4
 #     End of Cycle. Process OK
-
 
