@@ -1,6 +1,6 @@
 /**********************************************************************************************
 
-GET CYCLE Cycle Detection Application getcycle.c Rev 12 by Dan Lindamood III
+Batch-Capture Cycle Detection Application Batch-Capture.c Rev 12 by Dan Lindamood III
 
 V12 2014-01-15 Added PDF security
 
@@ -30,7 +30,7 @@ folder located in the web server file location. This is done by command argument
 #define LOG_FILE	"/var/www/active_log.txt"
 
 
-  ////////// GET CYCLE NUMBER  ////////// GET CYCLE NUMBER  ////////// GET CYCLE NUMBER  ////////// GET CYCLE NUMBER  //////////
+  ////////// Batch-Capture NUMBER  ////////// Batch-Capture NUMBER  ////////// Batch-Capture NUMBER  ////////// Batch-Capture NUMBER  //////////
 
 //get_cycle_number function started from main below
 char *get_cycle_number(char *cycle_str, char *argv_start_point, char *cycle_num) 
@@ -257,7 +257,7 @@ printf("\nCycle Detection Application Started  %s\nMonitors active_log.txt file 
 				sequence = 0; //reset sequence to 0
 			}
 
-			if (sequence == 2){ //Get cycle number
+			if (sequence == 2){ //Batch-Capture number
 				printf("2: VERIFY IF CYCLE\n");	
 				get_cycle_number(argv[2], argv[3], cycnum);//send to function for cycle number
 				if (strlen(cycnum) >= 2) sequence = 3; // Is there a cycle number (at least 2 digits)? If yes, go to next sequence. 
@@ -282,4 +282,3 @@ printf("\nCycle Detection Application Started  %s\nMonitors active_log.txt file 
 
    }
 }
-
