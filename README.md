@@ -1,13 +1,13 @@
-GetCycle
+BATCH-CAPTURE
 ========
 
 Serial Print Cycle and Batch Report Capture
 
-GET CYCLE DESCRIPTION
+Batch-Capture DESCRIPTION
 
-The GET CYCLE device server receives serial print data, stores and forwards the data to an
+The Batch-Capture device server receives serial print data, stores and forwards the data to an
 Ethernet capable printer. Using the least invasive approach by connecting only to the print port,
-GET CYCLE is designed to store the batch reports with little or no changes to the equipment providing the print data. After a proper configuration, GET CYCLE is “plug and play” and will run automatically on power up
+Batch-Capture is designed to store the batch reports with little or no changes to the equipment providing the print data. After a proper configuration, Batch-Capture is “plug and play” and will run automatically on power up
 independent of the equipment controls.
 
 The stored batch reports are archived in both srecured Acrobat PDF and raw PCL text formats. At the end of a
@@ -16,11 +16,11 @@ text file. The PDF files will include the original color format and fonts. Print
 reports, and other print functions not related to a cycle batch report are ignored.The batch reports
 are stored on the internal SD card. The available memory capacity is over 4GB.
 
-The GET CYCLE device is a web and network server. The stored files can be accessed using a
+The Batch-Capture device is a web and network server. The stored files can be accessed using a
 web browser and by mapping the network location using Windows.
 
 Optional: If DataStore Plus* (available on Allen Bradley PanelView Plus panels) is activated, the
-historian data can be stored as CSV files to the GET CYCLE server. The data can be viewed as a
+historian data can be stored as CSV files to the Batch-Capture server. The data can be viewed as a
 customized graph from a JavaScript compatible web browser.
 
 
@@ -28,21 +28,21 @@ customized graph from a JavaScript compatible web browser.
 
 THEORY OF OPERATION
 
-The GET CYCLE device boots up using the Raspbian “wheezy” 2012-10-28 operating system.
+The Batch-Capture device boots up using the Raspbian “wheezy” 2012-10-28 operating system.
 The 4GB operating system image is loaded on a 8GB SD card and the remaining partition is exanded to use the remaining 4GB for storage. 
 
 During the bootup process, a shell script application startprocess.sh starts the two programs essential to the operation of the device.
 
-The application startprocess.sh loads the two primary GET CYCLE applications, getcycle and
+The application startprocess.sh loads the two primary Batch-Capture applications, Batch-Capture and
 serial_to_tcp.py. The shell script provides the opening commands for the two applications with
 the required arguments (configurations). The startprocess.sh application is part of the three
 programs that can be edited by the programmer.
 
-One of the GET CYCLE functions is to receive serial data from a printer port of a controller, store the data to a file named active_log.txt and at the same time forward the data to an Ethernel printer port. The data is not filtered or changed. The application that performs this is the serial_to_tcp.py program.
+One of the Batch-Capture functions is to receive serial data from a printer port of a controller, store the data to a file named active_log.txt and at the same time forward the data to an Ethernel printer port. The data is not filtered or changed. The application that performs this is the serial_to_tcp.py program.
 
-The getcycle application is a compiled binary program using C programming language. The
+The Batch-Capture application is a compiled binary program using C programming language. The
 function is to periodically check the text file active_log.txt and determine whether a cycle has
-started and ended. The getcycle application at first only reads the text file. However, if the
+started and ended. The Batch-Capture application at first only reads the text file. However, if the
 received data is not from a cycle print, the text is cleared on the next periodic interval. This is to
 eliminate any non-cycle prints from the Getinge controller such as calibration and test printer
 functions. If the print data is verified as a cycle, the file will continue to be periodically checked
@@ -62,5 +62,5 @@ User name and Passwords are configured.
 
 Additional passwords can be created using an “htaccces Authentication generator” available at
 many internet locations ex: http://www.htaccesstools.com/htpasswd-generator/ . The results can
-be copied and pasted in the .htpasswd file in the main directory of the GET CYCLE web server
+be copied and pasted in the .htpasswd file in the main directory of the Batch-Capture web server
 location.
