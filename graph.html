@@ -1,25 +1,19 @@
 <!DOCTYPE html >
 <html>
 <head>
-<!--
-http://www.rgraph.net
 
-Trend graph of vertical CSV records using www.RGraph.net libraries. 
-The CSV files are created by the ActiveX application DataStore Plus 
-running in an Allen Bradley PanelView Plus (Version 5.10 or higher). -->
-
-<title>BATCH-CAPTURE GRAPH</title>
+<title>EXAMPLE GRAPH</title>
 
     <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
-    <script src="/libraries/RGraph.common.core.js" ></script>
-    <script src="/libraries/RGraph.common.dynamic.js" ></script>
-    <script src="/libraries/RGraph.common.context.js" ></script>
-    <script src="/libraries/RGraph.common.tooltips.js" ></script>
-    <script src="/libraries/RGraph.common.effects.js" ></script>
-    <script src="/libraries/RGraph.common.key.js" ></script>
-    <script src="/libraries/RGraph.line.js" ></script>
-    <script src="/libraries/jquery.min.js" ></script>
-    <!--[if IE]><script src="../excanvas/excanvas.js"></script><![endif]-->
+    <script src="./libraries/RGraph.common.core.js" ></script>
+    <script src="./libraries/RGraph.common.dynamic.js" ></script>
+    <script src="./libraries/RGraph.common.context.js" ></script>
+    <script src="./libraries/RGraph.common.tooltips.js" ></script>
+    <script src="./libraries/RGraph.common.effects.js" ></script>
+    <script src="./libraries/RGraph.common.key.js" ></script>
+    <script src="./libraries/RGraph.line.js" ></script>
+    <script src="./libraries/jquery.min.js" ></script>
+    <!--[if IE]><script src="./excanvas/excanvas.js"></script><![endif]-->
     
     
 </head>
@@ -60,6 +54,7 @@ running in an Allen Bradley PanelView Plus (Version 5.10 or higher). -->
 		var data7 = [];
 		var data8 = [];
 		var data9 = [];
+		var data10 = [];
 		var timeline = [];
 		var cycle_int = [];
 		var date_time = [];
@@ -86,55 +81,74 @@ running in an Allen Bradley PanelView Plus (Version 5.10 or higher). -->
 		   }
 
 
-		   if (Number(cells[37]) == 0) alarm.push(null);
+		   if (Number(cells[27]) == 0) alarm.push(null);
 		   else {
 			   alarm.push(150);
 			   alarm_active = 1;
 		   }
-
+		   if ((Number(cells[17]) == 2) && (phase_x != 2)) {
+			   phase.push('PHASE 2');
+			   phase_x = 2;	   
+		   }
 		   if ((Number(cells[17]) == 3) && (phase_x != 3)) {
-			   phase.push('PRE PULSE');
+			   phase.push('PHASE 3');
 			   phase_x = 3;	   
 		   }
 		   if ((Number(cells[17]) == 4) && (phase_x != 4)) {
-			   phase.push('PRE VACUUM');
+			   phase.push('PHASE 4');
 			   phase_x = 4;	   
 		   }
+		   if ((Number(cells[17]) == 5) && (phase_x != 5)) {
+			   phase.push('PHASE 5');
+			   phase_x = 5;	   
+		   }
+		   if ((Number(cells[17]) == 6) && (phase_x != 6)) {
+			   phase.push('PHASE 6');
+			   phase_x = 6;	   
+		   }
 		   if ((Number(cells[17]) == 11) && (phase_x != 11)) {
-			   phase.push('HEATUP');
+			   phase.push('PHASE 11');
 			   phase_x = 11;	   
 		   }
 		   if ((Number(cells[17]) == 13) && (phase_x != 13)) {
-			   phase.push('STERILIZING');
+			   phase.push('PHASE 13');
 			   phase_x = 13;	   
 		   }
 		   if ((Number(cells[17]) == 16) && (phase_x != 16)) {
-			   phase.push('POST VACUUM');
+			   phase.push('PHASE 16');
 			   phase_x = 16;	   
 		   }
 		   if ((Number(cells[17]) == 17) && (phase_x != 17)) {
-			   phase.push('POST PULSING');
+			   phase.push('PHASE 17');
 			   phase_x = 17;	   
 		   }
 		   if ((Number(cells[17]) == 18) && (phase_x != 18)) {
-			   phase.push('COOL PULSE');
+			   phase.push('PHASE 18');
 			   phase_x = 18;	   
 		   }
+		   if ((Number(cells[17]) == 19) && (phase_x != 19)) {
+			   phase.push('PHASE 19');
+			   phase_x = 19;	   
+		   }
 		   if ((Number(cells[17]) == 20) && (phase_x != 20)) {
-			   phase.push('LEAK RATE VACUUM');
+			   phase.push('PHASE 20');
 			   phase_x = 20;	   
 		   }
 		   if ((Number(cells[17]) == 21) && (phase_x != 21)) {
-			   phase.push('STABILIZING');
+			   phase.push('PHASE 21');
 			   phase_x = 21;	   
 		   }
 		   if ((Number(cells[17]) == 22) && (phase_x != 22)) {
-			   phase.push('LEAK TEST');
+			   phase.push('PHASE 22');
 			   phase_x = 22;	   
 		   }
 		   if ((Number(cells[17]) == 23) && (phase_x != 23)) {
-			   phase.push('EQUALIZING');
+			   phase.push('PHASE 23');
 			   phase_x = 23;	   
+		   }
+		   if ((Number(cells[17]) == 24) && (phase_x != 24)) {
+			   phase.push('PHASE 24');
+			   phase_x = 24;	   
 		   }
 		   else {
 		   phase.push('');
@@ -143,12 +157,13 @@ running in an Allen Bradley PanelView Plus (Version 5.10 or higher). -->
 		    data1.push(Number(cells[19]));
 		    data2.push(Number(cells[20]));
 		    data3.push(Number(cells[21]));
-//		    data4.push(Number(cells[5]));
-		    data5.push(Number(cells[26]));
+		    data4.push(Number(cells[22]));
+		    data5.push(Number(cells[23]));
 		    data6.push(cells[19]);
 		    data7.push(cells[20]);
 		    data8.push(cells[21]);
-		    data9.push(cells[26]);
+		    data9.push(cells[22]);
+		    data10.push(cells[23]);
 		    
 		    
 
@@ -162,9 +177,9 @@ running in an Allen Bradley PanelView Plus (Version 5.10 or higher). -->
 
 		    chart_title = 'Cycle '+cycle_int+'   '+cycle_name+'   '+date_time;
 		    if (alarm_active == 1) {
-			    chart_key =  ['Chamber Temp TE00  ', 'Heat Exch TE01  ', 'Chamber Drain TE02  ', 'Chamber Pressure PE06', 'Alarm Phase'];
+			    chart_key =  ['Temp TE0  ', 'Jacket Temp TE1  ', 'Insitu TE2  ', 'Chamber Pressure PE3', 'Alarm Phase'];
 		    }
-		    else  chart_key = ['Chamber Temp TE00  ', 'Heat Exch TE01  ', 'Chamber Drain TE02  ', 'Chamber Pressure PE06'];
+		    else  chart_key = ['Chamber Drain Temp TE0  ', 'Jacket Temp TE1  ', 'Insitu TE2  ', 'Chamber Pressure PE3'];
 
 		    if ( (i/20)<25){
 		    label_angle = 0;
@@ -189,7 +204,7 @@ running in an Allen Bradley PanelView Plus (Version 5.10 or higher). -->
 		    line1.Draw();
 
 		    var line2 = new RGraph.Line('cvs2', data1, data2, data3, data5);
-		    line2.Set('chart.linewidth', 1);
+		    line2.Set('chart.linewidth', 1.2);
 		    line2.Set('chart.background.grid.vlines',false);
 		    line2.Set('colors', ['red', 'green', 'purple', 'blue', 'pink']);
 		    line2.Set('chart.background.grid.autofit.numhlines', 10);
@@ -199,13 +214,13 @@ running in an Allen Bradley PanelView Plus (Version 5.10 or higher). -->
 		    line2.Set('chart.key.position.x', 800);
 		    line2.Set('chart.key.position.y', 0);
 		    line2.Set('chart.key.interactive', true);
-		    line2.Set('tooltips', data6, data7, data6, data9);
+		    line2.Set('tooltips', data6, data7, data6, data9, data10);
 		    line2.Set('chart.numxticks', 0);
 		    line2.Draw();
 		    
 		   var line3 = new RGraph.Line('cvs2', [1]);
 		   line3.Set('chart.background.grid', false);
-		   line3.Set('chart.axis.linewidth', 0);
+		   line3.Set('chart.axis.linewidth', 1.2);
 		   line3.Set('chart.labels', timeline );
 		   line3.Set('chart.text.angle', label_angle );
 		   line3.Set('chart.text.size', font_size);
@@ -224,8 +239,8 @@ running in an Allen Bradley PanelView Plus (Version 5.10 or higher). -->
 		   line4.Set('chart.fillstyle', ['Gradient(pink:rgba(255,255,255,0))']);
 		   line4.Set('chart.background.grid', false);
 		   line4.Set('chart.ylabels', false);
- 		   line4.Set('chart.colors', ['black']);
-		   line4.Set('chart.linewidth', .5);
+ 		   line4.Set('chart.colors', ['pink']);
+		   line4.Set('chart.linewidth', 1.01);
 		   line4.Set('chart.ymax', line2.max);
 		   line4.Set('chart.shadow', true);
 		   line4.Set('chart.numxticks', 0);
@@ -262,8 +277,9 @@ running in an Allen Bradley PanelView Plus (Version 5.10 or higher). -->
             * Make the AJAX call that fetches the CSV data
             */
 
-	    RGraph.AJAX('/csv/'+cycle_number+'_GRAPH.CSV', callback);
+	    RGraph.AJAX('../'+cycle_number+'_example.csv', callback);
         }
+
 </script>
 
 
@@ -271,6 +287,8 @@ running in an Allen Bradley PanelView Plus (Version 5.10 or higher). -->
 
 </body>
 </html>
+
+
 
 
 
