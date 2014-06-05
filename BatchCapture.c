@@ -169,7 +169,7 @@ char prntcmnd[128];
         sprintf(prntcmnd,"/var/sd/apps/pcl6 \
 		-J'@PJL SET FORMLINES=%s' \
 		-dNOPAUSE -sDEVICE=pdfwrite \
-		-sOwnerPassword=Getinge1 \
+		-sOwnerPassword=YourPassword \
 		-dEncryptionR=3 \
 		-dPermissions=-3884 \
 		-sOutputFile=/var/sd/www/pdf/cycle_%s.pdf \
