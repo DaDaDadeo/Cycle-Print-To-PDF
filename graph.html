@@ -91,49 +91,49 @@
 		   }
 
 
-		   if (Number(cells[27]) == 0) alarm.push(null);
+		   		   if (Number(cells[27]) == 0) alarm.push(null);
 		   else {
 			   alarm.push(150);
 			   alarm_active = 1;
 		   }
 		   if ((Number(cells[17]) == 2) && (phase_x != 2)) {
-			   phase.push('PHASE 2');
+			   phase.push('START');
 			   phase_x = 2;	   
 		   }
 		   if ((Number(cells[17]) == 3) && (phase_x != 3)) {
-			   phase.push('PHASE 3');
+			   phase.push('PRE PULSE');
 			   phase_x = 3;	   
 		   }
 		   if ((Number(cells[17]) == 4) && (phase_x != 4)) {
-			   phase.push('PHASE 4');
+			   phase.push('PRE VACUUM');
 			   phase_x = 4;	   
 		   }
 		   if ((Number(cells[17]) == 5) && (phase_x != 5)) {
-			   phase.push('PHASE 5');
+			   phase.push('PRE VACUUM 1');
 			   phase_x = 5;	   
 		   }
 		   if ((Number(cells[17]) == 6) && (phase_x != 6)) {
-			   phase.push('PHASE 6');
+			   phase.push('PRE VACUUM LIQUID');
 			   phase_x = 6;	   
 		   }
 		   if ((Number(cells[17]) == 11) && (phase_x != 11)) {
-			   phase.push('PHASE 11');
+			   phase.push('HEATING');
 			   phase_x = 11;	   
 		   }
 		   if ((Number(cells[17]) == 13) && (phase_x != 13)) {
-			   phase.push('PHASE 13');
+			   phase.push('STERILIZING');
 			   phase_x = 13;	   
 		   }
 		   if ((Number(cells[17]) == 16) && (phase_x != 16)) {
-			   phase.push('PHASE 16');
+			   phase.push('POST VACUUM');
 			   phase_x = 16;	   
 		   }
 		   if ((Number(cells[17]) == 17) && (phase_x != 17)) {
-			   phase.push('PHASE 17');
+			   phase.push('POST PULSE');
 			   phase_x = 17;	   
 		   }
 		   if ((Number(cells[17]) == 18) && (phase_x != 18)) {
-			   phase.push('PHASE 18');
+			   phase.push('COOL PULSE');
 			   phase_x = 18;	   
 		   }
 		   if ((Number(cells[17]) == 19) && (phase_x != 19)) {
@@ -141,23 +141,23 @@
 			   phase_x = 19;	   
 		   }
 		   if ((Number(cells[17]) == 20) && (phase_x != 20)) {
-			   phase.push('PHASE 20');
+			   phase.push('LEAK RATE VACUUM');
 			   phase_x = 20;	   
 		   }
 		   if ((Number(cells[17]) == 21) && (phase_x != 21)) {
-			   phase.push('PHASE 21');
+			   phase.push('STABILIZING');
 			   phase_x = 21;	   
 		   }
 		   if ((Number(cells[17]) == 22) && (phase_x != 22)) {
-			   phase.push('PHASE 22');
+			   phase.push('LEAK TEST');
 			   phase_x = 22;	   
 		   }
 		   if ((Number(cells[17]) == 23) && (phase_x != 23)) {
-			   phase.push('PHASE 23');
+			   phase.push('EQUALIZING');
 			   phase_x = 23;	   
 		   }
 		   if ((Number(cells[17]) == 24) && (phase_x != 24)) {
-			   phase.push('PHASE 24');
+			   phase.push('PROCESS COMPLETE');
 			   phase_x = 24;	   
 		   }
 		   else {
@@ -187,9 +187,9 @@
 
 		    chart_title = 'Cycle '+cycle_int+'   '+cycle_name+'   '+date_time;
 		    if (alarm_active == 1) {
-			    chart_key =  ['Temp TE0  ', 'Jacket Temp TE1  ', 'Insitu TE2  ', 'Chamber Pressure PE3', 'Alarm Phase'];
+			    chart_key =  ['Drain Temp', 'Jacket Temp', 'Filter Temp', 'Pressure', 'Alarm Phase'];
 		    }
-		    else  chart_key = ['Chamber Drain Temp TE0  ', 'Jacket Temp TE1  ', 'Insitu TE2  ', 'Chamber Pressure PE3'];
+		    else  chart_key = ['Drain Temp', 'Jacket Temp', 'Filter Temp', 'Pressure'];
 
 		    if ( (i/20)<25){
 		    label_angle = 0;
