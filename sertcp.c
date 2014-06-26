@@ -51,7 +51,7 @@ int main (int argc, char *argv[]) {
       ignoreTCP = 0,
       n = 0,
       timeout = 0,
-      cport_nr=23,        /* /dev/ttyS0 (COM1 on windows) */
+      cport_nr=23,        /* open rs232.c and from the list of serial ports, enter the count. Ex. /dev/ttyAMA0 (COM1 on windows) */
       bdrate=9600,       /* 9600 baud */
       interval = atoi(argv[2]);
   char print_time[48];  //used for providing time for logging process displayed on web page
