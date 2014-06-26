@@ -181,9 +181,9 @@ printf("\nSerial Capture/Server (sertcp) application Started  %s\nClose TCP port
 			}
                         timeout++;
                         check_com++;
-                        if (check_com == 50 ){
-				if (ignoreTCP == 0){
-					if (system(ping) != 0){
+                        if (check_com == 50 ){//Every 5 seconds, check if printer is still there
+				if (ignoreTCP == 0){ //If printer was there during the last check, check again.
+					if (system(ping) != 0){//Ping printer IP address and if failure, stop TCP comm to it.
 						ignoreTCP = 1;
                                 	        printf("Printer Disconnected During Active Cycle\n");
 						close(sd);
@@ -201,7 +201,7 @@ printf("\nSerial Capture/Server (sertcp) application Started  %s\nClose TCP port
 				if (comOK == 1) printf("Serial Port Idle / TCP Socket Closed  %s\n\n\n", print_time); //Print to status log
 				else printf("Serial Port Idle / Printer Disconnected  %s\n\n\n", print_time);
 				if (argc > 3) printf("%s  Second Start Timer Elapsed\n", argv[2]);//For Testing Only
-				ignoreTCP = 0;
+				ignoreTCP = 0; //reset ignoring the printer port. Will check when serial port active again.
 				comOK = 0;
 			}
 		
