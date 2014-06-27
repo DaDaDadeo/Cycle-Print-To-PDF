@@ -2,7 +2,11 @@
 12May2014
 
 file: ser_print.c by Dan Lindamood
+
+An alternative to serial_to_tcp.py Python version.
+
 remix from http://www.teuniz.net/RS-232/
+
 
 
 Scope: Capture serial text from serial port and also
