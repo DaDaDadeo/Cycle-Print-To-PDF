@@ -69,7 +69,7 @@ int main (int argc, char *argv[]) {
       ignoreTCP = 0,
       n = 0,
       timeout = 0,
-      cport_nr=22,        /* Locate line 50 in rs232.c, choose from the list and enter location # Ex: /dev/ttyAMA0 =22 (COM1 on windows) */
+      cport_nr=22,        /* Locate line 50 in rs232.c, choose from or add to the list and enter location # Ex: /dev/ttyAMA0 =22 (COM1 on windows) */
       bdrate=9600,       /* 9600 baud */
       interval = atoi(argv[2]);
   char print_time[48];  //used for providing time for logging process displayed on web page
