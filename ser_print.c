@@ -7,6 +7,8 @@ An alternative to serial_to_tcp.py Python version.
 
 remix from http://www.teuniz.net/RS-232/
 
+Download the source http://www.teuniz.net/RS-232/RS-232.tar.gz
+includes rs232.c and rs232.h
 
 
 Scope: Capture serial text from serial port and also
@@ -26,7 +28,7 @@ compile with the rs232.c file.
 Ex: gcc ser_print.c rs232.c -o ser_print
 
 Add 2 arguments for starting.
-         App          Printer IP   Timeout
+         Appname          Printer IP   Timeout
 example: ./ser_print 192.168.0.100 90
 
 
