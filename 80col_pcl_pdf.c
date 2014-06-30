@@ -10,6 +10,9 @@
  * in supporting documentation.
  * It is provided "as is" without express or implied warranty.
  *
+ * Print text with pcl6 code to pdf file. 
+ * Should look identical to HP raw 9100 telnet protocol
+ *
  */
 
 #include <stdlib.h>
