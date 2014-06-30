@@ -1,14 +1,14 @@
 
 /**********************************************************************************************
 
-GET CYCLE Cycle Detection Application getcycle.c Rev 13 by Dan Lindamood III
+Rev 13 by Dan Lindamood III
 
 V11 2013-04 Initial Release
 V12 2014-01-15 Added PDF security
 V13 2014-03-30	1)Removed locked cycle number starting point argument.
 		2)Created floating value (Line 59).
 		3)Added Reboot Command after adjustable amount of prints completed.
-V14 2014-05-12  Created for MOXA
+
 
 Scope:
 Read active_log.txt and determine if the print is from a cycle.
