@@ -10,16 +10,25 @@
  * in supporting documentation.
  * It is provided "as is" without express or implied warranty.
  *
- * Print text with pcl6 code to pdf file. 
- * Should look identical to HP raw 9100 telnet protocol
+ **********************************************************************
+ *
+ * Remix by Dan Lindamood III
+ * 
+ * Scope: Create PDF file from text with plc6 code. 
+ * 	  Match formatting to printers using raw 9100 telnet protocol.
+ *
+ * Rev 1  2014Jun30
+ *
  *
  */
+
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <setjmp.h>
-#include "/usr/local/include/hpdf.h"
+#include "hpdf.h"
+#include <time.h>
 
 jmp_buf env;
 
@@ -37,7 +46,26 @@ error_handler (HPDF_STATUS   error_no,
     longjmp(env, 1);
 }
 
-//////////////////////////MAIN//////////////////////////MAIN//////////////////////////MAIN//////////////////////////
+//RANDOM PASSWORD//////////////RANDOM PASSWORD//////////////RANDOM PASSWORD//////////////RANDOM PASSWORD//////////
+
+
+char *rand_str(char *dst, int size)
+{
+   static const char text[] = "abcdefghijklmnopqrstuvwxyz"
+                              "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                              "1234567890";
+   int i;
+   for ( i = 0; i < 8; ++i )
+   {
+      dst[i] = text[rand() % (sizeof text - 1)];
+   }
+   dst[i] = '\0';
+   return dst;
+}
+
+
+
+//MAIN /////////////////////MAIN//////////////////////////MAIN//////////////////////////MAIN//////////////////////////
 int main (int argc, char **argv)
 {
     HPDF_Doc  pdf;
@@ -48,13 +76,19 @@ int main (int argc, char **argv)
 
 
 
-    if (argc < 3) {
-        printf("Add [printed file name] [cycle count]\n");
+    if (argc < 4) {
+        printf("\nAdd [Printed File] [File to Print] [Lines Per Page]\n\n\
+		Example: /home/user/newfile.pdf /home/user/filetoprint.txt 62\n\n\
+		Additional Options:\n\
+		Author\n\
+		Creator\n\
+		Title\n\
+		Subject\n\
+		Keywords\n\n");
         return 0;
     }
 
     strcpy (fname, argv[1]);
-    strcat (fname, ".pdf");
 
     pdf = HPDF_New (error_handler, NULL);
     if (!pdf) {
@@ -70,10 +104,22 @@ int main (int argc, char **argv)
     /* Start with the first page. */
     page = HPDF_AddPage (pdf);
 
-    const static char* owner_passwd = "owner";
+    if (argc >= 5) HPDF_SetInfoAttr(pdf, HPDF_INFO_AUTHOR, argv[4]);
+    if (argc >= 6) HPDF_SetInfoAttr(pdf, HPDF_INFO_CREATOR, argv[5]);
+    if (argc >= 7)HPDF_SetInfoAttr(pdf, HPDF_INFO_TITLE,  argv[6]);
+    if (argc >= 8)HPDF_SetInfoAttr(pdf, HPDF_INFO_SUBJECT,  argv[7]);
+    if (argc == 9)HPDF_SetInfoAttr(pdf, HPDF_INFO_KEYWORDS,  argv[8]);
+
+
+
+
+    char owner_passwd[10];
+    srand(time(0)); 
+    rand_str(owner_passwd, sizeof owner_passwd);//Create random password
+//    printf("Password Test: %s\n", owner_passwd);//For Testing
 
     HPDF_SetPassword (pdf, owner_passwd, ""); 
-    HPDF_SetPermission (pdf, HPDF_ENABLE_PRINT);
+    HPDF_SetPermission (pdf, HPDF_ENABLE_PRINT | HPDF_ENABLE_COPY);
     HPDF_SetEncryptionMode (pdf, HPDF_ENCRYPT_R3, 16);
     HPDF_Page_SetRGBFill (page, 0.0, 0.0, 0);
     HPDF_Page_SetSize(page,HPDF_PAGE_SIZE_LETTER,HPDF_PAGE_PORTRAIT); 
@@ -92,19 +138,18 @@ int main (int argc, char **argv)
    char *find_ff;
    int newpage = 0;
    int null_loc = -1 ;
-   char logfile[64];
-
-      sprintf(logfile, "/var/www/pcl/cycle_%s.pcl",argv[2]);
-      pFile = fopen (logfile , "r");
+   int page_line = 0;
+	pFile = fopen (argv[2] , "r");//text file to print
 
         while((fgets(temp, 138, pFile) != NULL)) {  //Retrieve each line from text file and check it for printing.
 
 
-                if (newpage == 1){ //if new page is triggered and \f at end of previous line, go ahead and start new page now
+                if ((newpage == 1) || (page_line == atoi(argv[3]))){ //if new page is triggered and \f at end of previous line (or line count == ##), go ahead and start new page now
                         page = HPDF_AddPage (pdf);
                         HPDF_Page_SetSize(page,HPDF_PAGE_SIZE_LETTER,HPDF_PAGE_PORTRAIT);
                         newpage = 0;
-                        height = HPDF_Page_GetHeight (page);
+                        page_line = 0;//reset line count for new page
+			height = HPDF_Page_GetHeight (page);
                         width = HPDF_Page_GetWidth (page);
                         HPDF_Page_BeginText (page);
                         HPDF_Page_MoveTextPos (page, 25, height - 25);
@@ -123,7 +168,8 @@ int main (int argc, char **argv)
                         page = HPDF_AddPage (pdf);
                         HPDF_Page_SetSize(page,HPDF_PAGE_SIZE_LETTER,HPDF_PAGE_PORTRAIT);
 			newpage = 0;
-                        height = HPDF_Page_GetHeight (page);
+                        page_line = 0;//reset line count for new page
+			height = HPDF_Page_GetHeight (page);
                         width = HPDF_Page_GetWidth (page);
                         HPDF_Page_BeginText (page);
                         HPDF_Page_MoveTextPos (page, 25, height - 25);
@@ -146,7 +192,7 @@ int main (int argc, char **argv)
 //			printf("%s\n",temp);//For Testing
 			if (strstr(temp, "v07S")!= NULL) null_loc = strstr(temp, "v07S")- temp - 2;//Remove pcl6 code
                         else null_loc = 120;//Default to 120 characters in case of error
-			printf("%d\n",null_loc);//For Testing
+//			printf("%d\n",null_loc);//For Testing
                         temp[null_loc]= '\0';//Nullify the pcl6 code at end of line.
                 }
                 else HPDF_Page_SetRGBFill (page, 0.0, 0.0, 0);//Default to black font colr if not alarm
@@ -156,6 +202,7 @@ int main (int argc, char **argv)
 
 
         	line_num++;
+		page_line++;
         }
 
         fclose (pFile);
