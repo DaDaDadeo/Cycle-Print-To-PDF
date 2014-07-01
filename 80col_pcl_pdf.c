@@ -177,25 +177,25 @@ int main (int argc, char **argv)
 
                 HPDF_Font font = HPDF_GetFont (pdf, "Courier", NULL);//Use this font for entire print.
 
-                if (strstr(temp, "(s16H")!= NULL) { //Change font size to small if pcl code indicates to do so
+                if (strstr(temp, "(s16H")!= NULL) { //Change font size to small if pcl characters indicates to do so
 			HPDF_Page_SetFontAndSize (page, font, 7.5);
-                        memmove(temp,temp+6,strlen(temp)-6);//Remove pcl code
+                        memmove(temp,temp+6,strlen(temp)-6);//Remove pcl charcters
 			if (strstr(temp, "(s10H")!= NULL) null_loc = strstr(temp, "(s10H")- temp - 1;//Look for location of dead pcl code at end of line
                   	else null_loc = 120;//Default to 120 characters in case of error
 //			printf("%d\n",null_loc);//For Testing
-		 	temp[null_loc]= '\0';//Nullify the pcl code at end of line.
+		 	temp[null_loc]= '\0';//Nullify the pcl characters at end of line.
 		}
 		else HPDF_Page_SetFontAndSize (page, font, 12);
-		if (strstr(temp, "*r-3U")!= NULL) { //Change font color to red if pcl code indicates to do so. (for alarms).
-			HPDF_Page_SetRGBFill (page, 1.0, 0.0, 0);//code for red
-                        memmove(temp,temp+12,strlen(temp)-12);//Remove pcl code
+		if (strstr(temp, "*r-3U")!= NULL) { //Check to change font color to red if pcl characters indicates to do so. (for alarms).
+			HPDF_Page_SetRGBFill (page, 1.0, 0.0, 0);//Change to red
+                        memmove(temp,temp+12,strlen(temp)-12);//Remove pcl characters
 //			printf("%s\n",temp);//For Testing
-			if (strstr(temp, "v07S")!= NULL) null_loc = strstr(temp, "v07S")- temp - 2;//Remove pcl code
+			if (strstr(temp, "v07S")!= NULL) null_loc = strstr(temp, "v07S")- temp - 2;//Remove pcl characters
                         else null_loc = 120;//Default to 120 characters in case of error
 //			printf("%d\n",null_loc);//For Testing
                         temp[null_loc]= '\0';//Nullify the pcl6 code at end of line.
                 }
-                else HPDF_Page_SetRGBFill (page, 0.0, 0.0, 0);//Default to black font colr if not alarm
+                else HPDF_Page_SetRGBFill (page, 0.0, 0.0, 0);//Default to black font color if not alarm
 //		printf("%s\n",temp); //For Testing
                 HPDF_Page_ShowText (page, temp);//Send line to pdf print
                 HPDF_Page_MoveTextPos (page, 0 , - 12);//Set next position for new line
