@@ -27,17 +27,11 @@ customized graph from a JavaScript compatible web browser.
 
 THEORY OF OPERATION
 
-The GetCycle device boots up using the Debian operating system.
-The 4GB operating system image is loaded on a 8GB SD card and the remaining partition is expanded to use the remaining 4GB for storage. 
+The GetCycle runs within a compact embedded Linux computer.During the boot up process, a shell script application startprocess.sh starts the two programs essential to the operation of the device.
 
-During the boot up process, a shell script application startprocess.sh starts the two programs essential to the operation of the device.
+The shell script loads the two primary GetCycle applications, GetCycle and sertcp. The shell script provides the opening commands for the two applications with the required arguments (configurations).
 
-The application startprocess.sh loads the two primary GetCycle applications, GetCycle and
-serial_to_tcp.py. The shell script provides the opening commands for the two applications with
-the required arguments (configurations). The startprocess.sh application is part of the three
-programs that can be edited by the programmer.
-
-One of the GetCycle functions is to receive serial data from a printer port of a controller, store the data to a file named active_log.txt and at the same time forward the data to an Ethernet printer port. The data is not filtered or changed. The application that performs this is the serial_to_tcp.py program.
+One of the GetCycle functions is to receive serial data from a serial printer port of a controller, store the data to a file named active_log.txt and at the same time forward the data to an Ethernet printer port. The data is not filtered or changed. The application that performs this is the binary sertcp program.
 
 The GetCycle application is a compiled binary program using C programming language. The
 function is to periodically check the text file active_log.txt and determine whether a cycle has
@@ -46,20 +40,9 @@ received data is not from a cycle print, the text is cleared on the next periodi
 eliminate any non-cycle prints from the controller such as calibration and test printer
 functions. If the print data is verified as a cycle, the file will continue to be periodically checked
 (read only) until the cycle is completed. After the cycle completes, the text file is printed and
-stored as a PDF file using a compiled C program using the libharu Free PDF Libraries. The active_log.txt text file is then
-copied as a backup PCL file and then completely cleared for the next incoming data. Both the
+stored as a PDF file using a compiled C program using the libharu free PDF libraries (https://github.com/libharu/libharu/). The active_log.txt text file is then copied as a backup PCL file and then completely cleared for the next incoming data. Both the
 backup PCL and PDF files are named using the captured cycle number and the subsequent file
 type extensions.
 
-Note: The date and time tags listed for each creation of the files are created using the GET
-CYCLE clock and are not based on the date and time within the cycle print data.
-The user has secured access to the archived files using a web browser. A user name and
-password is required in order to view the site. Only the administrator Admin1 has access to the
-FTP directory.
 
-User name and Passwords are configured.
 
-Additional passwords can be created using an “htaccces Authentication generator” available at
-many internet locations ex: http://www.htaccesstools.com/htpasswd-generator/ . The results can
-be copied and pasted in the .htpasswd file in the main directory of the GetCycle web server
-location.
