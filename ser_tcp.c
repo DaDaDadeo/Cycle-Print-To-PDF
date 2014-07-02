@@ -18,7 +18,7 @@ Details: When the serial port is active, the client socket is opened.
 If there is no printer, ignore the tcp socket and continue capturing
 the serial to a text file. If the printer is connected, forward to 
 the printer port 9100. When the serial port is active and the tcp
-socket is still open, continue checking communications 
+socket is still open, continue checking communications (sing 56byte ping)
 to the printer by pinging every 5 seconds. If communications are lost,
 the tcp client socket is closed and the capture to file continues until
 after the serial port is inactive and the configured timeout is done. 
@@ -55,7 +55,6 @@ exit the program by pressing Ctrl-C
 
 #define BUFFER_LEN	1024
 #define LOG_FILE	"/var/www/active_log.txt"
-#define SERVER_PORT 9100
 #define MAX_MSG 100
 
 
@@ -69,9 +68,9 @@ int main (int argc, char *argv[]) {
       ignoreTCP = 0,
       n = 0,
       timeout = 0,
-      cport_nr=22,        /* Locate line 50 in rs232.c, choose from or add to the list and enter location # Ex: /dev/ttyAMA0 =22 (COM1 on windows) */
+      cport_nr=22,        /* /dev/ttyAMA0 (COM1 on windows) */
       bdrate=9600,       /* 9600 baud */
-      interval = atoi(argv[2]);
+      interval = atoi(argv[3]);
   char print_time[48];  //used for providing time for logging process displayed on web page
   char ping[48];
 
@@ -92,7 +91,7 @@ int main (int argc, char *argv[]) {
   }
 
 
- sprintf(ping, "ping -c1 %s >/dev/null 2>&1", argv[1]);//prepare system command for comm check
+ sprintf(ping, "ping -c1 -w1 %s >/dev/null 2>&1", argv[1]);//prepare system command for comm check
 
 	/*Verify Serial Port Available. Close Application if not*/
   	if(RS232_OpenComport(cport_nr, bdrate)){
@@ -106,7 +105,7 @@ struct tm tm = *localtime(&t); //used for providing time for logging process dis
 //used for providing time for logging process displayed on web page
 sprintf(print_time,"%d-%d-%d %d:%d:%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);// display on web page log
 //Printed to nohup.out (processTCP.txt) in web page
-printf("\nSerial Capture/Server (sertcp) application Started  %s\nClose TCP port [%s] after %s seconds of innactivity. \n\nVersion 0 2014-JUNE-6 By -DL-\n\n\n",  print_time,argv[1], argv[2]);//send to Status Log
+printf("\nSerial Capture/Server (sertcp) application Started  %s\nClose TCP port [%s] after %s seconds of innactivity. \n\nVersion 0 2014-JUNE-6 By -DL-\n\n\n",  print_time,argv[1], argv[3]);//send to Status Log
 
 
 	/* Loop forever*/
@@ -122,49 +121,57 @@ printf("\nSerial Capture/Server (sertcp) application Started  %s\nClose TCP port
 
 				timeout = 0;/*reset timout timer*/
 
-				h = gethostbyname(argv[1]);/*printer IP address*/
+				if (system(ping) != 0){
+                                	ignoreTCP = 1;
+                                	printf("Printer Disconnected\n");
+                                }
 
-				if(h==NULL) {
-					if (argc > 4) printf("%s: unknown host '%s'\n",argv[0],argv[1]);
-					comOK = 0 ;
-					ignoreTCP = 1;
-				}
-				servAddr.sin_family = h->h_addrtype;
-				memcpy((char *) &servAddr.sin_addr.s_addr, h->h_addr_list[0], h->h_length);
-				servAddr.sin_port = htons(SERVER_PORT);
+				if (ignoreTCP == 0){
 
-				/* create socket */
-				sd = socket(AF_INET, SOCK_STREAM, 0);
-				if(sd<0) {
-					if (argc > 4) perror("Printer Disconnected (1)\n ");
-					comOK = 0 ;
-					ignoreTCP = 1;
-				}
+					h = gethostbyname(argv[1]);/*printer IP address*/
 
-				/* bind any port number */
-				localAddr.sin_family = AF_INET;
-				localAddr.sin_addr.s_addr = htonl(INADDR_ANY);
-				localAddr.sin_port = htons(0);
-
-				rc = bind(sd, (struct sockaddr *) &localAddr, sizeof(localAddr));
-
-				if(rc<0) {
-					if (argc > 4){ //add 4th argument to test port 
-						printf("%s: cannot bind port TCP %u\n",argv[0],SERVER_PORT);
-						perror("error ");
+					if(h==NULL) {
+//						printf("%s: unknown host '%s'\n",argv[0],argv[1]);//For Testing
+						comOK = 0 ;
+						ignoreTCP = 1;
 					}
-					comOK = 0;
-					ignoreTCP = 1;
-				}
+					servAddr.sin_family = h->h_addrtype;
+					memcpy((char *) &servAddr.sin_addr.s_addr, h->h_addr_list[0], h->h_length);
+					servAddr.sin_port = htons(atoi(argv[2]));
 
-				/* connect to server */
-				rc = connect(sd, (struct sockaddr *) &servAddr, sizeof(servAddr));
-				if(rc<0) {
-					if (argc > 4) perror("Printer Disconnected (2)\n ");
-					comOK = 0;
-					ignoreTCP = 1;
+					/* create socket */
+					sd = socket(AF_INET, SOCK_STREAM, 0);
+					if(sd<0) {
+//						perror("Printer Disconnected (1)\n ");// For Testing
+						comOK = 0 ;
+						ignoreTCP = 1;
+					}
+
+					/* bind any port number */
+					localAddr.sin_family = AF_INET;
+					localAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+					localAddr.sin_port = htons(0);
+
+					rc = bind(sd, (struct sockaddr *) &localAddr, sizeof(localAddr));
+
+					if(rc<0) {
+						if (argc > 4){ //add 4th argument to test port 
+//							printf("%s: cannot bind port TCP %u\n",argv[0],atoi(argv[2]));//For testing
+//							perror("error ");//for testing
+						}
+						comOK = 0;
+						ignoreTCP = 1;
+					}
+
+					/* connect to server */
+					rc = connect(sd, (struct sockaddr *) &servAddr, sizeof(servAddr));
+					if(rc<0) {
+//						perror("Printer Disconnected (2)\n ");//For testing
+						comOK = 0;
+						ignoreTCP = 1;
+					}
+					else comOK = 1 ;//Only open socket once until next serial activity after being idle.
 				}
-				else comOK = 1 ;
 			}
 
 		/*Send serial data to file and TCP socket if TCP socket is open*/
@@ -184,7 +191,7 @@ printf("\nSerial Capture/Server (sertcp) application Started  %s\nClose TCP port
 					ignoreTCP = 1;
 				}
 			}
-		if (first_active == 0) first_active++ ;//Provide messages after first serial activity		
+		if (first_active == 0) first_active++ ;//Provide messages after first serial activity
 		}
 			/*Close socket after configured (2nd Parameter) time
 			when serial port is inactive*/
@@ -208,7 +215,7 @@ printf("\nSerial Capture/Server (sertcp) application Started  %s\nClose TCP port
 					}
 				}
 				check_com = 0;
-                                if (argc > 4) printf("check_com Timer Elapsed\n");//For Testing Only
+                                printf("check_com Timer Elapsed\n");//For Testing Only
 			}
 			if (timeout == (interval *10)){
                                	print_once = 0;
@@ -218,11 +225,11 @@ printf("\nSerial Capture/Server (sertcp) application Started  %s\nClose TCP port
 				sprintf(print_time,"%d-%d-%d %d:%d:%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 				if (comOK == 1) printf("Serial Port Idle / TCP Socket Closed  %s\n\n\n", print_time); //Print to status log
 				else printf("Serial Port Idle / Printer Disconnected  %s\n\n\n", print_time);
-				if (argc > 3) printf("%s  Second Start Timer Elapsed\n", argv[2]);//For Testing Only
+//				printf("%s  Second Start Timer Elapsed\n", argv[3]);//For Testing Only
 				ignoreTCP = 0;
 				comOK = 0;
 			}
-		
+
 		}
 
 	fflush(stdout);//clear stdout periodically. This is for the proper function of writing to the process log.
@@ -232,4 +239,5 @@ printf("\nSerial Capture/Server (sertcp) application Started  %s\nClose TCP port
 
   return(0);
 }
+
 
