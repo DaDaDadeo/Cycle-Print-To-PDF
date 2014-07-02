@@ -1,5 +1,36 @@
 BELOW IS ONE EXAMPLE OF A SETUP:
 
+/////////////Alekto 2 or Alekto Plus////////////////Alekto 2 or Alekto Plus////////////////
+
+Ready built package with 2 serial and 2 LAN.
+Micro SD card for image and storage 
+Open source downloads for updates and images
+ARM9 or AM3354 ARM Cortex-A8
+
+AM3354 ARM Cortex-A8
+
+http://www.vscom.de/6820.htm
+http://www.vscom.de/6806.htm
+
+
+
+
+
+
+////////////////MOXA UC-7112 PLUS////////////////MOXA UC-7112 PLUS////////////////
+
+Compact
+Ready built package with 2 serial and 2 LAN 
+Linux image 
+SD slot for applications and storage.
+
+Requires Cross Compiling 
+
+
+
+///////////RASPBERRY PI ///////////RASPBERRY PI////////////////RASPBERRY PI/////////////              
+
+
 This setup uses RxD and TxD but does not have RTS/CTS serial communication.
 
 RASPBERRY PI® Model B computer
@@ -7,7 +38,7 @@ Raspberry Pi is a trademark of the Raspberry Pi Foundation
 
 8GB SD CARD IMAGE INCLUDES:
 Raspbian “wheezy” 2012-10-28 (LINUX Based Operating System)
-GhostPDL 9.06 (pdfwrite PCL6) (Print Application)
+libharu free PDF library (installed)
 Apache 2 Web Server
 Samba Network Server
 Pyserial
