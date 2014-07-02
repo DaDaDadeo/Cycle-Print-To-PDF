@@ -1,7 +1,7 @@
 /**************************************************
-12May2014
+30Jun2014
 
-file: ser_print.c by Dan Lindamood
+file: serial_tcp.c by Dan Lindamood
 
 An alternative to serial_to_tcp.py Python version.
 
