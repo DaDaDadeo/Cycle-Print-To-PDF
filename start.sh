@@ -26,7 +26,7 @@ PORT=9100
 TIMEOUT=90
 
 
-nohup /var/www/apps/sertcp/sertcp $PRINTER_IP $PORT $TIMEOUT &> /var/www/status/${logdate}_Process_tcp.txt &
+nohup /var/www/apps/sertcp/serial_tcp $PRINTER_IP $PORT $TIMEOUT &> /var/www/status/${logdate}_Process_tcp.txt &
 
 
 
