@@ -18,7 +18,7 @@
  * 	  Match formatting to printers using raw 9100 telnet protocol.
  *
  * Rev 1  2014Jun30
- * Rev 2  2014Jul23  Added Steris Degree symbol conversion
+ * Rev 2  2014Jul23  Added Degree symbol conversion
  *
  * Compile using command: gcc -o pcl_to_pdf -O2 -Wall pcl_to_pdf.c -lhpdf -lz -lm 
  * 
