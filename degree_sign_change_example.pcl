@@ -1,0 +1,396 @@
+READY TO START
+----------------------------------------
+Time of Day (24hr)              16:40:06
+Chamber Temperature             68.3 øC
+Jacket Temperature              115.6 øC
+Load 1 Temperature              ***** øC
+
+CYCLE NAME: HIGHTEMP SHORT
+
+LOT NUMBER:
+PRODUCT CODE:
+DESCRIPTION:
+DATE: 07/10/14
+STERILIZER ID: 12345
+
+CYCLE TYPE            : STANDARD
+
+Preconditioning Type  : PREVAC PULSES
+Exposure Type         : TIME
+  Exposure temperature: 132.0 øC
+  Overdrive           : 1.5 øC
+  Overtemp            : 6.0 øC
+  Undertemp           : 1.0 øC
+  Exposure time       : 4:00 m:s
+  Exp. print interval : 30 sec
+Postconditioning Type : VACUUM DRY
+Cycle jacket temp.    : 115 øC
+Interlock type        : A->B->A
+
+
+PRECONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:40:32
+Chamber Pressure               14.3 psia
+Chamber Temperature             67.4 øC
+Jacket Temperature              115.0 øC
+Load 1 Temperature              ***** øC
+----------------------------------------
+Time of Day (24hr)              15:41:32
+Chamber Pressure               20.2 psia
+Chamber Temperature             100.4 øC
+Jacket Temperature              115.3 øC
+Load 1 Temperature              ***** øC
+
+
+PRECONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:42:32
+Chamber Pressure               6.0 psia
+Chamber Temperature             72.5 øC
+Jacket Temperature              115.6 øC
+Load 1 Temperature              ***** øC
+
+PRECONDITIONING
+
+
+
+
+
+
+----------------------------------------
+Time of Day (24hr)              15:42:40
+Chamber Pressure               16.9 psia
+Chamber Temperature             85.8 øC
+Jacket Temperature              115.3 øC
+Load 1 Temperature              ***** øC
+
+
+PRECONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:43:32
+Chamber Pressure               4.8 psia
+Chamber Temperature             82.9 øC
+Jacket Temperature              114.9 øC
+Load 1 Temperature              ***** øC
+
+PRECONDITIONING
+Time of Day (24hr)              15:43:39
+Chamber Pressure               4.0 psia
+Chamber Temperature             79.8 øC
+Jacket Temperature              115.5 øC
+Load 1 Temperature              ***** øC
+
+----------------------------------------
+Time of Day (24hr)              15:43:49
+Chamber Pressure               16.8 psia
+Chamber Temperature             95.8 øC
+Jacket Temperature              115.5 øC
+Load 1 Temperature              ***** øC
+
+PRECONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:44:32
+Chamber Pressure               5.4 psia
+Chamber Temperature             88.9 øC
+Jacket Temperature              115.5 øC
+Load 1 Temperature              ***** øC
+
+CHARGE
+----------------------------------------
+Time of Day (24hr)              15:44:56
+Chamber Pressure               3.0 psia
+Chamber Temperature             80.8 øC
+Jacket Temperature              115.6 øC
+Load 1 Temperature              ***** øC
+
+CHARGE
+----------------------------------------
+Time of Day (24hr)              15:45:32
+Chamber Pressure               32.8 psia
+Chamber Temperature             125.9 øC
+Jacket Temperature              115.8 øC
+Load 1 Temperature              ***** øC
+
+EXPOSURE
+----------------------------------------
+Chamber Pressure               39.1 psia
+Chamber Temperature             132.0 øC
+Jacket Temperature              116.1 øC
+Load 1 Temperature              ***** øC
+
+
+
+
+
+
+
+----------------------------------------
+Time of Day (24hr)              15:46:17
+Chamber Pressure               42.0 psia
+Chamber Temperature             133.8 øC
+Jacket Temperature              115.5 øC
+Load 1 Temperature              ***** øC
+
+EXPOSURE
+----------------------------------------
+Time of Day (24hr)              15:46:47
+Chamber Pressure               43.6 psia
+Chamber Temperature             133.8 øC
+Jacket Temperature              116.4 øC
+Load 1 Temperature              ***** øC
+
+EXPOSURE
+----------------------------------------
+Time of Day (24hr)              15:47:17
+Chamber Pressure               44.7 psia
+Chamber Temperature             133.4 øC
+Jacket Temperature              115.8 øC
+Load 1 Temperature              ***** øC
+
+
+EXPOSURE
+----------------------------------------
+Chamber Pressure               45.4 psia
+Chamber Temperature             133.8 øC
+Jacket Temperature              115.0 øC
+Load 1 Temperature              ***** øC
+
+
+EXPOSURE
+----------------------------------------
+Time of Day (24hr)              15:48:17
+Chamber Pressure               46.1 psia
+Chamber Temperature             133.3 øC
+Jacket Temperature              115.8 øC
+Load 1 Temperature              ***** øC
+
+
+EXPOSURE
+----------------------------------------
+Time of Day (24hr)              15:48:47
+Chamber Pressure               47.0 psia
+Chamber Temperature             133.6 øC
+Jacket Temperature              116.5 øC
+Load 1 Temperature              ***** øC
+
+
+EXPOSURE
+----------------------------------------
+Time of Day (24hr)              15:49:17
+Chamber Pressure               48.7 psia
+Chamber Temperature             133.9 øC
+Jacket Temperature              117.0 øC
+Load 1 Temperature              ***** øC
+
+----------------------------------------
+
+
+
+
+
+
+Time of Day (24hr)              15:49:47
+Chamber Pressure               48.0 psia
+Chamber Temperature             133.6 øC
+Jacket Temperature              117.1 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:50:47
+Chamber Pressure               14.4 psia
+Chamber Temperature             98.4 øC
+Jacket Temperature              110.4 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:51:42
+Chamber Pressure               4.0 psia
+Chamber Temperature             68.1 øC
+Jacket Temperature              106.9 øC
+Load 1 Temperature              ***** øC
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:51:47
+Chamber Pressure               4.1 psia
+Jacket Temperature              106.7 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:52:47
+Chamber Pressure               4.1 psia
+Chamber Temperature             92.9 øC
+Jacket Temperature              104.8 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:53:47
+Chamber Pressure               3.9 psia
+Chamber Temperature             98.5 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:54:47
+Chamber Pressure               4.0 psia
+Chamber Temperature             100.0 øC
+Jacket Temperature              104.7 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+
+
+
+
+
+
+Time of Day (24hr)              15:55:47
+Chamber Pressure               4.0 psia
+Jacket Temperature              104.1 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:56:47
+Chamber Pressure               3.9 psia
+Chamber Temperature             101.1 øC
+Jacket Temperature              104.1 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:57:47
+Chamber Pressure               3.9 psia
+Chamber Temperature             101.2 øC
+Jacket Temperature              103.9 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:58:47
+Chamber Pressure               4.1 psia
+Chamber Temperature             101.2 øC
+Jacket Temperature              103.9 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              15:59:47
+Chamber Pressure               4.0 psia
+Chamber Temperature             101.1 øC
+Jacket Temperature              103.9 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              16:00:47
+Chamber Pressure               3.9 psia
+Chamber Temperature             100.9 øC
+Jacket Temperature              104.4 øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              16:01:47
+Chamber Pressure               3.9 psia
+Chamber Temperature             100.6 øC
+Jacket Temperature              104.4 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+
+
+
+
+
+
+----------------------------------------
+Time of Day (24hr)              16:02:47
+Chamber Pressure               3.9 psia
+Chamber Temperature             100.4 øC
+Jacket Temperature              104.4 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              16:03:47
+Chamber Pressure               4.1 psia
+Chamber Temperature             100.0 øC
+Jacket Temperature              104.4 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              16:04:47
+Chamber Pressure               3.9 psia
+Chamber Temperature             99.6 øC
+Jacket Temperature              104.4 øC
+Load 1 Temperature              ***** øC
+
+
+POSTCONDITIONING
+----------------------------------------
+Time of Day (24hr)              16:05:47
+Chamber Pressure               3.9 psia
+Chamber Temperature             99.2 øC
+Jacket Temperature              104.0 øC
+Load 1 Temperature              ***** øC
+
+
+EQUALIZATION
+----------------------------------------
+Time of Day (24hr)              16:06:42
+Chamber Pressure               4.0 psia
+Chamber Temperature             98.8 øC
+Jacket Temperature              103.7 øC
+Load 1 Temperature              ***** øC
+
+EQUALIZATION
+----------------------------------------
+Chamber Pressure               4.4 psia
+Chamber Temperature             98.7 øC
+Jacket Temperature              103.7 øC
+Load 1 Temperature              ***** øC
+
+----------------------------------------
+Time of Day (24hr)              16:07:47
+Chamber Pressure               11.4 psia
+Chamber Temperature             96.0 øC
+Jacket Temperature              102.2 øC
+Load 1 Temperature              ***** øC
+
+
+CYCLE COMPLETED
+----------------------------------------
+
+
+
+
+
+
+Time of Day (24hr)              16:08:16
+Chamber Pressure               13.3 psia
+Jacket Temperature              101.9 øC
+Load 1 Temperature              ***** øC
+
+
