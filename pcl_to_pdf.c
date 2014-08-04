@@ -20,7 +20,7 @@
  * Rev 1  2014Jun30
  * Rev 2  2014Jul23  Added Steris Degree symbol conversion
  *
- * Compile using command: gcc -o pcl_to_pdf -O2 -Wall pcl_to_pdf.c -lhpdf -lz -lm (ignore comma warnings)
+ * Compile using command: gcc -o pcl_to_pdf -O2 -Wall pcl_to_pdf.c -lhpdf -lz -lm 
  * 
  * Print command example: ./pcl_to_pdf cycle_20.pdf /var/www/pcl/cycle_20.pcl 62 "John Doe"
  */
@@ -149,11 +149,11 @@ int main (int argc, char **argv)
                         HPDF_Page_MoveTextPos (page, 25, height - 25);
 		}
 
-		find_deg = strchr(temp,("%c", 248));//Search for ascii character 248 "ø"
+		find_deg = strchr(temp,248);//Search for ascii character 248 "ø"
 		if(find_deg){ //If an ascii 248 (degree sign) replace with ascii 176 "°" (printable degree sign)
 			int loc =  find_deg - temp;
 //			printf("find_deg results %s at %d\n", find_deg, loc);  //For Testing
-			temp[loc] = ("%c",176) ;
+			temp[loc] = 176;
                 }
 
 		find_ff = strchr(temp, '\f');
