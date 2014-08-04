@@ -20,7 +20,7 @@
  * Rev 1  2014Jun30
  * Rev 2  2014Jul23  Added Steris Degree symbol conversion
  *
- * Compile using command: gcc -o pcl_to_pdf -O2 -Wall pcl_to_pdf.c -lhpdf -lz -lm
+ * Compile using command: gcc -o pcl_to_pdf -O2 -Wall pcl_to_pdf.c -lhpdf -lz -lm (ignore comma warnings)
  * 
  * Print command example: ./pcl_to_pdf cycle_20.pdf /var/www/pcl/cycle_20.pcl 62 "John Doe"
  */
