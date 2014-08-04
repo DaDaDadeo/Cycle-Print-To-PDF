@@ -25,7 +25,6 @@
  * Print command example: ./pcl_to_pdf cycle_20.pdf /var/www/pcl/cycle_20.pcl 62 "John Doe"
  */
 
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -66,8 +65,6 @@ char *rand_str(char *dst, int size)
    return dst;
 }
 
-
-
 //MAIN /////////////////////MAIN//////////////////////////MAIN//////////////////////////MAIN//////////////////////////
 int main (int argc, char **argv)
 {
@@ -76,8 +73,6 @@ int main (int argc, char **argv)
     HPDF_Page page;
     HPDF_REAL height;
     HPDF_REAL width;
-
-
 
     if (argc < 4) {
         printf("\nAdd [Printed File] [File to Print] [Lines Per Page]\n\n\
@@ -113,9 +108,6 @@ int main (int argc, char **argv)
     if (argc >= 8)HPDF_SetInfoAttr(pdf, HPDF_INFO_SUBJECT,  argv[7]);
     if (argc == 9)HPDF_SetInfoAttr(pdf, HPDF_INFO_KEYWORDS,  argv[8]);
 
-
-
-
     char owner_passwd[10];
     srand(time(0)); 
     rand_str(owner_passwd, sizeof owner_passwd);//Create random password
@@ -130,10 +122,8 @@ int main (int argc, char **argv)
     height = HPDF_Page_GetHeight (page);
     width = HPDF_Page_GetWidth (page);
 
-
     HPDF_Page_BeginText (page);
     HPDF_Page_MoveTextPos (page, 25, height - 25);
-
 
    FILE * pFile;
    int line_num = 0;
@@ -211,15 +201,11 @@ int main (int argc, char **argv)
                 HPDF_Page_ShowText (page, temp);//Send line to pdf print
                 HPDF_Page_MoveTextPos (page, 0 , - 12);//Set next position for new line
 
-
         	line_num++;
 		page_line++;
         }
 
         fclose (pFile);
-
-
-
 
     HPDF_Page_EndText (page);
 
