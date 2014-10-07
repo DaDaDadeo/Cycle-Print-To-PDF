@@ -18,7 +18,7 @@ are stored on the internal SD card. The available memory capacity is over 4GB.
 The GetCycle device is a web and network server. The stored files can be accessed using a
 web browser and by mapping the network location using Windows.
 
-Optional: If DataStore Plus* (available on Allen Bradley PanelView Plus panels) is activated, the
+Optional: If DataStore Plus (available on Allen Bradley PanelView Plus panels) is activated, the
 historian data can be stored as CSV files to the GetCycle server. The data can be viewed as a
 customized graph from a JavaScript compatible web browser.
 
@@ -29,7 +29,7 @@ THEORY OF OPERATION
 
 The GetCycle runs within a compact embedded Linux computer.During the boot up process, a shell script application startprocess.sh starts the two programs essential to the operation of the device.
 
-The shell script loads the two primary GetCycle applications, GetCycle and sertcp. The shell script provides the opening commands for the two applications with the required arguments (configurations).
+The shell script loads the two primary GetCycle applications, GetCycle and sertcp (or servprint). The shell script provides the opening commands for the two applications with the required arguments.
 
 One of the GetCycle functions is to receive serial or tcp socket data from an automation PLC, store the data to a file named active_log.txt and at the same time forward the data to an Ethernet printer port. The data is not filtered or changed. The application that performs this is the binary sertcp program.
 
