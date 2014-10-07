@@ -5,7 +5,7 @@ Serial Print Cycle and Batch Report Capture
 
 GetCycle DESCRIPTION
 
-The GetCycle device server receives serial print data, stores and forwards the data to an
+The GetCycle device server receives serial or tcp socket print data, stores and forwards the data to an
 Ethernet capable printer. Using the least invasive approach by connecting only to the print port,
 GetCycle is designed to store the batch reports with little or no changes to the equipment providing the print data. After a proper configuration, GetCycle is “plug and play” and will run automatically on power up independent of the equipment controls.
 
@@ -31,7 +31,7 @@ The GetCycle runs within a compact embedded Linux computer.During the boot up pr
 
 The shell script loads the two primary GetCycle applications, GetCycle and sertcp. The shell script provides the opening commands for the two applications with the required arguments (configurations).
 
-One of the GetCycle functions is to receive serial data from a serial printer port of a controller, store the data to a file named active_log.txt and at the same time forward the data to an Ethernet printer port. The data is not filtered or changed. The application that performs this is the binary sertcp program.
+One of the GetCycle functions is to receive serial or tcp socket data from an automation PLC, store the data to a file named active_log.txt and at the same time forward the data to an Ethernet printer port. The data is not filtered or changed. The application that performs this is the binary sertcp program.
 
 The GetCycle application is a compiled binary program using C programming language. The
 function is to periodically check the text file active_log.txt and determine whether a cycle has
