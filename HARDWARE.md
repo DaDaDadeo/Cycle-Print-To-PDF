@@ -1,5 +1,16 @@
 BELOW IS ONE EXAMPLE OF A SETUP:
 
+/////////////MOXA UC-8131////////////////MOXA UC-8131////////////////
+
+Ready built package with 1 serial and 2 LAN.
+SD card for image and storage 
+Open source downloads for updates and images
+
+
+http://www.moxa.com/product/UC-8100.htm
+
+
+
 /////////////Alekto 2 or Alekto Plus////////////////Alekto 2 or Alekto Plus////////////////
 
 Ready built package with 2 serial and 2 LAN.
@@ -11,20 +22,6 @@ AM3354 ARM Cortex-A8
 
 http://www.vscom.de/6820.htm
 http://www.vscom.de/6806.htm
-
-
-
-
-
-
-////////////////MOXA UC-7112 PLUS////////////////MOXA UC-7112 PLUS////////////////
-
-Compact
-Ready built package with 2 serial and 2 LAN 
-Linux image 
-SD slot for applications and storage.
-
-Requires Cross Compiling 
 
 
 
