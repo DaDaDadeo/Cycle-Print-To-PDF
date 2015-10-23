@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # Start Processes
 # 21OCT2015 -DL-
