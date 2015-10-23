@@ -5,10 +5,19 @@ file: serial_txt.c rev1 by Dan Lindamood
 
 purpose: Capture serial text from serial port and write to file.
 
+remix from http://www.teuniz.net/RS-232/
+Download the source http://www.teuniz.net/RS-232/RS-232.tar.gz
+includes rs232.c and rs232.h
+
+or
+
+http://sourceforge.net/p/pebl/code-0/756/tree/trunk/src/utility/rs232.c
+http://sourceforge.net/p/pebl/code-0/756/tree/trunk/src/utility/rs232.h
+
 Complile with rs232.c and rs232.h.
 
 Example:
-gcc serial_txt.c rs232.c serial_txt
+gcc serial_txt.c rs232.c -o serial_txt
 
 
  
