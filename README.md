@@ -31,9 +31,25 @@ The GetCycle runs within a compact embedded Linux computer.During the boot up pr
 
 The shell script loads the two primary GetCycle applications, GetCycle and sertcp (or servprint). The shell script provides the opening commands for the two applications with the required arguments.
 
-One of the GetCycle functions is to receive serial or tcp socket data from an automation PLC, store the data to a file named active_log.txt and at the same time forward the data to an Ethernet printer port. The data is not filtered or changed. The application that performs this is the binary sertcp program.
+The Get-Cycle can function as a device server and receive serial or tcp socket data from an automation PLC, store the data to a file named active_log.txt and at the same time forward the data to an Ethernet printer port. 
 
-The GetCycle application is a compiled binary program using C programming language. The
+The Get-Cycle can also be configured to run without forwarding the data to an Ethener port until the logged information or cycle is completed. This allows for a printer or server port to be used only for a short period.
+
+The data stored to the text file is not filtered or changed. There are several applications that perform different functions depending on the options used. 
+
+	If serial data is to be captured and forwarded to a printer, the serial_tcp or serial_to_tcp.py applications can be used. 
+  
+	If serial data is to be captured only, the serial_txt applciation can be used. The serial_to_tcp application can be used also by configuring the IP address to a non-exisisting address.
+  
+	If TCP data is captured and forwarded to a printer, the serv_print application is used.
+	
+	If TCP data is captured only, the application serv_txt is used.
+	
+	The getcycle19 will only print to PDF.
+	
+	The getycle20 wil print both the PDF file of cycles only and all information that is stored to the log file. The log file text is sent to the printer using the file_tcp application.
+
+The Get-Cycle application is a compiled binary program using C programming language. The
 function is to periodically check the text file active_log.txt and determine whether a cycle has
 started and ended. The GetCycle application at first only reads the text file. However, if the
 received data is not from a cycle print, the text is cleared on the next periodic interval. This is to
