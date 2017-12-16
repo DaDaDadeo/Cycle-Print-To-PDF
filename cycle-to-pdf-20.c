@@ -1,7 +1,7 @@
 
 /**********************************************************************************************
 
-GET CYCLE Cycle Detection Application getcycle.c by Dan Lindamood III
+cycle-to-pdf Cycle Detection Application cycle-to-pdf.c by Dan Lindamood III
 
 V11 2013-04 Initial Release
 V12 2014-01-15 Added PDF security
@@ -174,7 +174,7 @@ void out_to_print(char *cyclenum, char *lines, char *author, char *pcl, int PDF)
 	char prntcmnd[128];
 
     if (PDF == 1){
-		sprintf(prntcmnd, "/var/www/apps/pcl_to_pdf /var/www/pdf/cycle_%s.pdf /var/www/active_log.txt %s %s\'%s\' GetCycle cycle_%s.pdf", cyclenum, lines, pcl, author, cyclenum);
+		sprintf(prntcmnd, "/var/www/apps/pcl_to_pdf /var/www/pdf/cycle_%s.pdf /var/www/active_log.txt %s %s\'%s\' cycle-to-pdf cycle_%s.pdf", cyclenum, lines, pcl, author, cyclenum);
 		sprintf(newpdf, "/var/www/pdf/cycle_%s.pdf", cyclenum);
 
 		newpdfFile = fopen(newpdf, "r"); //open new pdf file to verify that it exists.
