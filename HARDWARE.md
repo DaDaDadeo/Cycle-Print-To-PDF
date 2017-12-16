@@ -41,7 +41,7 @@ Samba Network Server
 Pyserial
 Python 3
 serial_to_tcp.py (serial to Ethernet converter and capture program)
-getcycle (C compiled binary program)
+cycle-to-pdf (C compiled binary program)
 RGraph JavaScript Libraries
 4.0GB Remaining Space
 
