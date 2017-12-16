@@ -51,7 +51,7 @@ The data stored to the text file is not filtered or changed. There are several a
 
 The cycle-to-pdf application is a compiled binary program using C programming language. The
 function is to periodically check the text file active_log.txt and determine whether a cycle has
-started and ended. The Get-Cycle application at first only reads the text file. However, if the
+started and ended. The cycle-to-pdf application at first only reads the text file. However, if the
 received data is not from a cycle print, the text is cleared on the next periodic interval. This is to
 eliminate any non-cycle prints from the controller such as calibration and test printer
 functions. If the print data is verified as a cycle, the file will continue to be periodically checked
