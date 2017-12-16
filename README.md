@@ -45,11 +45,11 @@ The data stored to the text file is not filtered or changed. There are several a
 	
 - If TCP data is captured only, the application serv_txt is used.
 	
-- The Get-Cycle19 will only print to PDF.
+- The cycle-to-pdf-19 will only print to PDF.
 	
-- The getycle20 wil print both the PDF file of cycles only and all information that is stored to the log file. The log file text is sent to the printer using the file_tcp application.
+- The cycle-to-pdf-20 program will print both the PDF file of cycles only and all information that is stored to the log file. The log file text is sent to the printer using the file_tcp application.
 
-The Get-Cycle application is a compiled binary program using C programming language. The
+The cycle-to-pdf application is a compiled binary program using C programming language. The
 function is to periodically check the text file active_log.txt and determine whether a cycle has
 started and ended. The Get-Cycle application at first only reads the text file. However, if the
 received data is not from a cycle print, the text is cleared on the next periodic interval. This is to
