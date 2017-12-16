@@ -1,7 +1,7 @@
 
 /**********************************************************************************************
 
-CYCLE-TO-PDF Cycle Detection Application getcycle.c by Dan Lindamood III
+CYCLE-TO-PDF Cycle Detection Application cycle-to-pdf.c by Dan Lindamood III
 
 V11 2013-04 Initial Release
 V12 2014-01-15 Added PDF security
