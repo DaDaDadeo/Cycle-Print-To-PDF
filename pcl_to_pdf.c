@@ -24,7 +24,7 @@
  * 
  * Print command example: ./pcl_to_pdf cycle_20.pdf /var/www/pcl/cycle_20.pcl 62 "John Doe"
  *
- * Example prints are available on the wiki page https://github.com/DaDaDadeo/GetCycle/wiki
+ * Example prints are available on the wiki page https://github.com/DaDaDadeo/Cycle-Print-To-PDF/wiki
  */
 
 #include <stdlib.h>
